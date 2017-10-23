@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Teams</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+  <style type="text/css">
+  	body{
+		padding: 0;
+		margin: 0;
+  	}
+	.splash-screen{
+		text-align: center;
+		white-space: nowrap;	
+		height: 100%;
+		position: absolute;
+		width: 100%;
+		font-family: sans-serif;
+	}
+	.splash-screen:before{
+		content: '';
+		display: inline-block;
+		height: 100%;
+		vertical-align: middle;
+	}
+	.loader-wrap{
+		display: inline-block;
+		vertical-align: middle;
+		width: 300px;
+	}
+  </style>
+</head>
+<body class="mat-app-background mat-typography">
+  <app-root>
+  	<section class="splash-screen">
+  		<section class="loader-wrap">
+	  		<img src="./assets/img/loader.svg" width="48">
+	  		<section>
+	  			loading...			
+	  		</section>		
+  		</section>
+  	</section>
+  </app-root>
+</body>
+</html>

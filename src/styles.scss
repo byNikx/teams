@@ -1,0 +1,55 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body{
+	padding: 0;
+	margin: 0;	
+}
+mat-sidenav {
+  width: 250px;
+  background-color: #fff;
+}
+bd-container{
+	display: block;
+	&.xs{
+		margin:.5rem auto;
+		width: 95%
+	}
+	&.sm{
+		margin:1rem auto;
+		width: 90%
+	}
+	&.md{
+		margin:1rem auto;
+		width: 85%
+	}
+	&.lg{
+		margin:1rem auto;
+		width: 80%
+	}
+	&.xl{
+		margin:1rem auto;
+		width: 75%
+	}
+}
+
+/* Rules for sizing the icon. */
+mat-icon.mat-18 { font-size: 18px !important; }
+mat-icon.mat-24 { font-size: 24px !important; }
+mat-icon.mat-36 { font-size: 36px !important; }
+mat-icon.mat-48 { font-size: 48px !important; }
+
+/* Rules for using icons as black on a light background. */
+mat-icon.mat-dark { color: rgba(0, 0, 0, 0.54); }
+mat-icon.mat-dark.mat-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+mat-icon.mat-light { color: rgba(255, 255, 255, 1); }
+mat-icon.mat-light.mat-inactive { color: rgba(255, 255, 255, 0.3); }
+
+.no-margin{
+	margin:0 !important;
+}
+.no-padding{
+	padding:0 !important;
+}
