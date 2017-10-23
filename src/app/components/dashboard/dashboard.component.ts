@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	private _usersWatcher: Subscription;
 	users: User[];
 	teams = [];
+	partition = {left: null, right: null};
 	constructor(private layout: LayoutService, private userService: UserService) { 
 
 		this.getRandomColor();
@@ -38,8 +39,27 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 				this.teams.push(_team);
 		});
+		this.doPartition();
 
 	}
+
+
+	doPartition(){
+		let totalTeams = this.teams.length || 0;
+
+		if(!totalTeams)	return;
+
+		this.partition.left = this.teams.filter((team, index)=>{
+			if(index+1<=Math.ceil(totalTeams/2))
+				return team;
+		});
+		this.partition.right = this.teams.filter((team, index)=>{
+			if(index+1>Math.ceil(totalTeams/2) && index+1<=totalTeams)
+				return team;
+		});
+
+	}
+
 
 	getRandomColor(){
 		let color = this.colorArray[Math.floor(Math.random()*this.colorArray.length)];
@@ -53,7 +73,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	ngOnInit() {
 		setInterval(()=>{
 			this.getRandomColor();
-		}, 10*1000);
+		}, 60*1000);
 	}
 
 	ngOnDestroy(){

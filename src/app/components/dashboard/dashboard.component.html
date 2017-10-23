@@ -6,17 +6,17 @@
 		 		Dashboard
 		 	</h1>
 		 	<h4 class="mat-caption">Devided by technology, united by bankdata</h4>
-		 	<section [fxShow]="layout.media.isActive('gt-sm')" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
+		 	<!-- <section [fxShow]="layout.media.isActive('gt-sm')" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
 		 		<h5>Departments: 3</h5>
 		 		<h5>Teams: 6</h5>
 			 	<h5>Scrum Masters: 5</h5>
 			 	<h5>Developers: 90</h5>		 			 		
-		 	</section>
+		 	</section> -->
 	 	</section>
 	 </section>
-	 <section fxLayout="row" fxLayoutWrap class="team-card-list" fxLayoutAlign="start start">
-	 	<section *ngFor="let team of teams" [fxFlex]="layout.media.isActive('gt-sm')?50:100">
-			<mat-card [ngClass]="{'team':true, 'small':!layout.media.isActive('gt-sm')}" fxFlex>
+	 <section fxLayout="row"  fxLayoutAlign="start start" class="team-card-list" fxLayoutGap="20px">
+		<section fxFlex fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="20px">
+			<mat-card [ngClass]="{'team':true, 'small':!layout.media.isActive('gt-sm')}" fxFlex *ngFor="let team of partition.left">
 				<mat-card-header>
 					<img mat-card-avatar src="./assets/img/turtle.png" alt="">
 					<section fxLayout="column" fxLayoutGap="10px">
@@ -37,13 +37,69 @@
 						</mat-grid-list>						
 					</section>
 				</mat-card-content>
-<!-- 				<mat-card-actions>
+ 				<mat-card-actions>
 					<button mat-button>LIKE</button>
 					<button mat-button>SHARE</button>
-				</mat-card-actions> -->
+				</mat-card-actions>
 			</mat-card>
+		</section>
+		<section fxFlex fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="20px">
+			<mat-card [ngClass]="{'team':true, 'small':!layout.media.isActive('gt-sm')}" fxFlex *ngFor="let team of partition.right">
+				<mat-card-header>
+					<img mat-card-avatar src="./assets/img/turtle.png" alt="">
+					<section fxLayout="column" fxLayoutGap="10px">
+						<mat-card-title>{{team.name}}</mat-card-title>
+						<mat-card-subtitle>{{team.area}}</mat-card-subtitle>
+					</section>
+				</mat-card-header>
+				<mat-card-content>
+					<section style="background-color: #f2f2f2; overflow: auto">
+						<mat-grid-list gutterSize="2px" [cols]="layout.media.isActive('gt-lg')?4:layout.media.isActive('gt-sm')?3:2" rowHeight="1:1">
+							<mat-grid-tile *ngFor="let member of team.members" style="background-color: #f2f2f2;">
+								<img class="member-avatar" [src]="member.avatar">
+								<mat-grid-tile-footer>
+						            <h3 mat-line>{{member.name}}</h3>
+						            <mat-icon matTooltip="Scrum Master" *ngIf="member.role === 'scrum_master'" class="mat-24">star</mat-icon>
+								</mat-grid-tile-footer>
+							</mat-grid-tile>
+						</mat-grid-list>						
+					</section>
+				</mat-card-content>
+ 				<mat-card-actions>
+					<button mat-button>LIKE</button>
+					<button mat-button>SHARE</button>
+				</mat-card-actions>
+			</mat-card>
+		</section>
+	 	<!--<section *ngFor="let team of teams" [fxFlex]="layout.media.isActive('gt-sm')?50:100">
+ 			<mat-card [ngClass]="{'team':true, 'small':!layout.media.isActive('gt-sm')}" fxFlex>
+				<mat-card-header>
+					<img mat-card-avatar src="./assets/img/turtle.png" alt="">
+					<section fxLayout="column" fxLayoutGap="10px">
+						<mat-card-title>{{team.name}}</mat-card-title>
+						<mat-card-subtitle>{{team.area}}</mat-card-subtitle>
+					</section>
+				</mat-card-header>
+				<mat-card-content>
+					<section style="background-color: #f2f2f2; overflow: auto">
+						<mat-grid-list gutterSize="2px" [cols]="layout.media.isActive('gt-lg')?4:layout.media.isActive('gt-sm')?3:2" rowHeight="1:1">
+							<mat-grid-tile *ngFor="let member of team.members" style="background-color: #f2f2f2;">
+								<img class="member-avatar" [src]="member.avatar">
+								<mat-grid-tile-footer>
+						            <h3 mat-line>{{member.name}}</h3>
+						            <mat-icon matTooltip="Scrum Master" *ngIf="member.role === 'scrum_master'" class="mat-24">star</mat-icon>
+								</mat-grid-tile-footer>
+							</mat-grid-tile>
+						</mat-grid-list>						
+					</section>
+				</mat-card-content>
+ 				<mat-card-actions>
+					<button mat-button>LIKE</button>
+					<button mat-button>SHARE</button>
+				</mat-card-actions>
+			</mat-card> 
 	 		
-	 	</section>
+	 	</section>-->
 
 	 </section>
 </bd-container>
