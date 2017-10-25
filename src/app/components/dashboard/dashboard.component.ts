@@ -33,7 +33,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 				_team.name = team.name;
 				_team.area = team.backlog
 				_team.members = team.members.map((member)=>{
-					return Object.assign(member, {avatar:faker.internet.avatar()});
+					let localtion ="./assets/img/users/";
+					return Object.assign(member, {avatar:localtion+member.img});
 				});
 //				_team.members[0].role = 'scrum_master';
 
