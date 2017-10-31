@@ -7,9 +7,9 @@
 		 	</h1>
 		 	<h4 class="mat-caption">Devided by technology, united by bankdata</h4>
 		 	<section [fxShow]="layout.media.isActive('gt-sm')" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
-		 		<h5>Departments: 3</h5>
-		 		<h5>Teams: 6</h5>
-			 	<h5>Scrum Masters: 5</h5>
+		 		<h5>Departments: {{count.departments}}</h5>
+		 		<h5>Teams: {{count.teams}}</h5>
+			 	<h5>Scrum Masters: {{count.scrumMasters}}</h5>
 			 	<h5>Developers: 90</h5>		 			 		
 		 	</section>
 	 	</section>
@@ -18,7 +18,7 @@
 		<section fxFlex fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="20px">
 			<mat-card [ngClass]="{'team':true, 'small':!layout.media.isActive('gt-sm')}" fxFlex *ngFor="let team of partition.left">
 				<mat-card-header>
-					<img mat-card-avatar src="./assets/img/turtle.png" alt="">
+					<img mat-card-avatar src="./assets/img/team/avatars/{{team.avatar||'team-default.svg'}}" alt="">
 					<section fxLayout="column" fxLayoutGap="10px">
 						<mat-card-title>{{team.name}}</mat-card-title>
 						<mat-card-subtitle>{{team.area}}</mat-card-subtitle>
@@ -37,16 +37,12 @@
 						</mat-grid-list>						
 					</section>
 				</mat-card-content>
- 				<mat-card-actions>
-					<button mat-button>LIKE</button>
-					<button mat-button>SHARE</button>
-				</mat-card-actions>
 			</mat-card>
 		</section>
 		<section fxFlex fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="20px">
 			<mat-card [ngClass]="{'team':true, 'small':!layout.media.isActive('gt-sm')}" fxFlex *ngFor="let team of partition.right">
 				<mat-card-header>
-					<img mat-card-avatar src="./assets/img/turtle.png" alt="">
+					<img mat-card-avatar src="./assets/img/team/avatars/{{team.avatar||'team-default.svg'}}" alt="">
 					<section fxLayout="column" fxLayoutGap="10px">
 						<mat-card-title>{{team.name}}</mat-card-title>
 						<mat-card-subtitle>{{team.area}}</mat-card-subtitle>
@@ -65,10 +61,6 @@
 						</mat-grid-list>						
 					</section>
 				</mat-card-content>
- 				<mat-card-actions>
-					<button mat-button>LIKE</button>
-					<button mat-button>SHARE</button>
-				</mat-card-actions>
 			</mat-card>
 		</section>
 	 	<!--<section *ngFor="let team of teams" [fxFlex]="layout.media.isActive('gt-sm')?50:100">

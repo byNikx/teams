@@ -8,6 +8,7 @@ import 'hammerjs';
 /**Services**/
 import { LayoutService } from './services/layout/layout.service';
 import { UserService } from './services/user/user.service';
+import { UtilService } from './services/util/util.service';
 
 
 /**Components**/
@@ -29,7 +30,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
   ],
   providers: [
     forwardRef(() => LayoutService),
-    UserService
+    UserService,
+    UtilService
   ],
   bootstrap: [AppComponent]
 })

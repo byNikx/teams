@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LayoutService } from '../../services/layout/layout.service';
 import { UserService } from '../../services/user/user.service';
+import { UtilService } from '../../services/util/util.service';
 import { User } from '../../models/user.model';
 import { Team } from '../../models/team.model';
 var faker = require('faker');
@@ -21,7 +22,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	users: User[];
 	teams = [];
 	partition = {left: null, right: null};
-	constructor(private layout: LayoutService, private userService: UserService) { 
+	count = {
+
+	};
+	constructor(private layout: LayoutService, private userService: UserService, private util: UtilService) { 
 
 		this.getRandomColor();
 		this._usersWatcher = this.userService.users.subscribe((users)=>{
@@ -31,19 +35,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		appData.forEach((team)=>{
 			let _team = new Team();
 				_team.name = team.name;
-				_team.area = team.backlog
+				_team.area = team.backlog;
+				_team.avatar = team.avatar;
 				_team.members = team.members.map((member)=>{
 					let localtion ="./assets/img/users/";
 					return Object.assign(member, {avatar:localtion+member.img});
 				});
-//				_team.members[0].role = 'scrum_master';
-
 				this.teams.push(_team);
 		});
 		this.doPartition();
 
 	}
-
 
 	doPartition(){
 		let totalTeams = this.teams.length || 0;
@@ -61,7 +63,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 	}
 
-
 	getRandomColor(){
 		let color = this.colorArray[Math.floor(Math.random()*this.colorArray.length)];
 		if(color == this.bgColor){
@@ -74,7 +75,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	ngOnInit() {
 		setInterval(()=>{
 			this.getRandomColor();
-		}, 60*1000);
+		}, 10*1000);
+
+		Object.assign(this.count, {departments: 3});
+		Object.assign(this.count, {teams: appData.length});
+		
+		Object.assign(this.count, {scrumMasters: appData.filter((team)=>{
+				let scrumMasters = team.members.filter((member)=>{
+					return member.role == "scrum_master";
+				});
+
+				if(!!scrumMasters.length)
+					return scrumMasters;
+			}).length
+		});
+
+		console.log('this.count.scrumMasters', this.count);
+
 	}
 
 	ngOnDestroy(){

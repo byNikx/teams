@@ -4,6 +4,7 @@ export class Team {
 	private _name: string;
 	private _members: User[];
 	private _area: string;
+	private _avatar: string;
 
 	constructor() {}
 
@@ -30,4 +31,13 @@ export class Team {
 	set area(area) {
 		this._area = area;
 	};
+
+	get avatar(): string {
+		return this._avatar;
+	};
+
+	set avatar(avatar) {
+		this._avatar = avatar;
+	};
+
 }

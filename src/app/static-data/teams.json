@@ -2,6 +2,7 @@
 	{
 		"name": "Avengers",
 		"backlog": "Mobile apps",
+		"avatar": "avengers.png",
 		"sprintgoal": "Unknown",
 		"members": [
 			{"name": "Anja Frydenholm", "title": "Avengers", "img": "AMF-1.jpg", "role":"scrum_master"},
@@ -15,6 +16,7 @@
 	},{							
 		"name": "DenIn",
 		"backlog": "Netbank Privat",
+		"avatar": "denmark.png",
 		"sprintgoal": "Unknown",
 		"members": [
 			{"name": "Anja Frydenholm", "title": "DenIn", "img": "AMF-1.jpg", "role":"scrum_master"},
@@ -31,6 +33,7 @@
 	},{
 		"name": "Grønne mænd",
 		"backlog": "Kundevendt sikkerhed",
+		"avatar": "",
 		"sprintgoal": "Unknown",
 		"members": [	
 			{"name": "Bo Grønbæk", "title": "Grønne mæ.", "img": "BOG-1.jpg", "role":""},
@@ -40,6 +43,7 @@
 	},{
 		"name": "Ledelse",
 		"backlog": "Ledelse",
+		"avatar": "team.svg",
 		"sprintgoal": "Unknown",
 		"members": [	
 			{"name": "Anne-Sofie Rosbjerg Touray", "title": "Ledelse", "img": "AST-1.jpg", "role":""},
@@ -49,6 +53,7 @@
 	},{
 		"name": "Mario",
 		"backlog": "Mobile apps",
+		"avatar": "mario.png",
 		"sprintgoal": "Unknown",
 		"members": [	
 			{"name": "Brian Højland Nielsen", "title": "Mario", "img": "BHN-1.jpg", "role":""},
@@ -59,8 +64,9 @@
 			{"name": "Morten Gregersen", "title": "Mario", "img": "MGR-1.jpg"}
 		]
 	},{
-		"name": "Munchkin",
+		"name": "Ninja",
 		"backlog": "UMA platform",
+		"avatar": "ninja.svg",
 		"sprintgoal": "Unknown",
 		"members": [	
 			{"name": "Casper Green", "title": "Munchkin", "img": "CGR-1.jpg", "role":""},
@@ -69,6 +75,7 @@
 	},{
 		"name": "Sikkerhed",
 		"backlog": "Kundevendt sikkerhed",
+		"avatar": "security.png",
 		"sprintgoal": "",
 		"members": [									
 			{"name": "Bjarne Flugt", "title": "Sikkerhed", "img": "BFJ-1.jpg", "role":""},
@@ -83,6 +90,7 @@
 	},{
 		"name": "Fitbits",
 		"backlog": "WCM",
+		"avatar": "dumbbell.svg",
 		"sprintgoal": "Unknown",
 		"members": [	
 			{"name": "Merete Junge Simonsen", "title": "Fitbits", "img": "MJS-1.jpg", "role":""},
@@ -96,6 +104,7 @@
 	},{
 		"name": "Minions",
 		"backlog": "WCM",
+		"avatar": "minion.png",
 		"sprintgoal": "",
 		"members": [	
 			{"name": "Ann Sofie Skjoldager", "title": "Minions", "img": "ASK-1.jpg", "role":""},				
@@ -108,6 +117,7 @@
 	},{
 		"name": "Top Gun",
 		"backlog": "IFRS9 og Netbank Erhverv",
+		"avatar": "gun.svg",
 		"sprintgoal": "Unknown",
 		"members": [	
 			{"name": "Bodil Højgaard Strandby", "title": "Top Gun", "img": "BHS-1.jpg", "role":""},
@@ -122,6 +132,7 @@
 	},{
 		"name": "Turtle",
 		"backlog": "Netbank privat",
+		"avatar": "turtle.svg",
 		"sprintgoal": "Vi kan lave en 13er",
 		"members": [
 			{"name": "Jørgen Vrou", "title": "Turtle", "img": "JVH-1.jpg", "role":""},
@@ -139,6 +150,7 @@
 	},{
 		"name": "Tværgående",
 		"backlog": "Agile, Coach, excellence, UX, og meget mere",
+		"avatar": "agile.png",
 		"sprintgoal": "Unknown",
 		"members": [	
 			{"name": "Jakob Sørensen", "title": "Tværgående", "img": "JAO-1.jpg", "role":""},
