@@ -75,22 +75,55 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	ngOnInit() {
 		setInterval(()=>{
 			this.getRandomColor();
-		}, 10*1000);
+		}, 5*1000);
 
 		Object.assign(this.count, {departments: 3});
 		Object.assign(this.count, {teams: appData.length});
 		
-		Object.assign(this.count, {scrumMasters: appData.filter((team)=>{
-				let scrumMasters = team.members.filter((member)=>{
-					return member.role == "scrum_master";
+		Object.assign(this.count, {scrumMasters: appData.map((team)=>{
+				let scrumMasters = team.members.filter((member, index)=>{
+					if(member.role == "scrum_master"){
+						return member;
+					}
 				});
 
-				if(!!scrumMasters.length)
-					return scrumMasters;
-			}).length
+				if(scrumMasters.length>0)
+					return scrumMasters[0];
+				
+			}).reduce((accumulator, currentValue)=>{
+
+				if(!!currentValue){
+					let key = [currentValue.name, currentValue.img, currentValue.role].join('|');
+
+					if(accumulator.temp.indexOf(key) < 0){
+						accumulator.temp.push(key);
+						accumulator.out.push(currentValue);
+					}
+				}
+				return accumulator;
+
+			}, {temp:[], out:[]}).out.length
 		});
 
-		console.log('this.count.scrumMasters', this.count);
+		Object.assign(this.count, {members: appData.reduce((accumulator, team)=>{
+
+			team.members.forEach((member)=>{
+				let key = [member.name, member.img].join('|');
+
+				if(accumulator.temp.indexOf(key) < 0){
+					accumulator.temp.push(key);
+					accumulator.out.push(member);
+				}
+			});
+
+			return accumulator;
+
+			}, {temp:[], out:[]}).out.length
+
+		});
+
+
+console.log("this.count", this.count);
 
 	}
 

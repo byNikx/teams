@@ -3,14 +3,14 @@
 	 <section style="margin-top: 1rem; margin-bottom: 1rem;">
 	 	<section style="color: #fff;" fxLayout="column" fxLayoutAlign="center center">
 		 	<h1 class="mat-display-1" style="margin-bottom: 0">
-		 		Dashboard
+		 		Bankdata
 		 	</h1>
 		 	<h4 class="mat-caption">Devided by technology, united by bankdata</h4>
 		 	<section [fxShow]="layout.media.isActive('gt-sm')" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
 		 		<h5>Departments: {{count.departments}}</h5>
 		 		<h5>Teams: {{count.teams}}</h5>
 			 	<h5>Scrum Masters: {{count.scrumMasters}}</h5>
-			 	<h5>Developers: 90</h5>		 			 		
+			 	<h5>Developers: {{count.members}}</h5>		 			 		
 		 	</section>
 	 	</section>
 	 </section>
