@@ -4,6 +4,8 @@ import { UserService } from '../../services/user/user.service';
 import { UtilService } from '../../services/util/util.service';
 import { User } from '../../models/user.model';
 import { Team } from '../../models/team.model';
+import { environment } from '../../../environments/environment';
+
 var faker = require('faker');
 const appData = require('../../static-data/teams.json');
 
@@ -36,10 +38,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 			let _team = new Team();
 				_team.name = team.name;
 				_team.area = team.backlog;
-				_team.avatar = team.avatar;
+				_team.avatar = environment.location.dashboard.teamAvatar+(team.avatar || 'team-default.svg');
 				_team.members = team.members.map((member)=>{
-					let localtion ="./assets/img/users/";
-					return Object.assign(member, {avatar:localtion+member.img});
+					return Object.assign(member, {avatar:environment.location.dashboard.userAvatar+member.img});
 				});
 				this.teams.push(_team);
 		});

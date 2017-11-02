@@ -5,6 +5,7 @@ export class Team {
 	private _members: User[];
 	private _area: string;
 	private _avatar: string;
+	private _backlog: string;
 
 	constructor() {}
 
@@ -38,6 +39,14 @@ export class Team {
 
 	set avatar(avatar) {
 		this._avatar = avatar;
+	};
+
+	get backlog(): string {
+		return this._backlog;
+	};
+
+	set backlog(backlog) {
+		this._backlog = backlog;
 	};
 
 }

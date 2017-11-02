@@ -3,6 +3,7 @@ export class User {
 	private _avatar: string;
 	private _type: string;
 	private _role: string;
+	private _img: string;
 
 	constructor(){}
 
@@ -36,5 +37,13 @@ export class User {
 
 	set role(role) {
 		this._role = role;
+	}
+
+	get img(): string {
+		return this._img;
+	}
+
+	set img(img) {
+		this._img = img;
 	}
 }

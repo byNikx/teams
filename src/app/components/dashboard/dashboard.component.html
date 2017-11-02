@@ -18,7 +18,7 @@
 		<section fxFlex fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="20px">
 			<mat-card [ngClass]="{'team':true, 'small':!layout.media.isActive('gt-sm')}" fxFlex *ngFor="let team of partition.left">
 				<mat-card-header>
-					<img mat-card-avatar src="./assets/img/team/avatars/{{team.avatar||'team-default.svg'}}" alt="">
+					<img mat-card-avatar [src]="team.avatar">
 					<section fxLayout="column" fxLayoutGap="10px">
 						<mat-card-title>{{team.name}}</mat-card-title>
 						<mat-card-subtitle>{{team.area}}</mat-card-subtitle>
@@ -42,7 +42,7 @@
 		<section fxFlex fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="20px">
 			<mat-card [ngClass]="{'team':true, 'small':!layout.media.isActive('gt-sm')}" fxFlex *ngFor="let team of partition.right">
 				<mat-card-header>
-					<img mat-card-avatar src="./assets/img/team/avatars/{{team.avatar||'team-default.svg'}}" alt="">
+					<img mat-card-avatar [src]="team.avatar">
 					<section fxLayout="column" fxLayoutGap="10px">
 						<mat-card-title>{{team.name}}</mat-card-title>
 						<mat-card-subtitle>{{team.area}}</mat-card-subtitle>

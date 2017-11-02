@@ -4,5 +4,14 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  location: {
+  	dashboard: {
+  		userAvatar: './assets/img/users/',
+  		teamAvatar: './assets/img/team/avatars/'
+  	},
+  	api:{
+  		user: './assets/static-data/teams.json'
+  	}
+  }
 };
