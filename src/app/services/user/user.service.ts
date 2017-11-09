@@ -1,32 +1,39 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { User } from '../../models/user.model';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { Subscription } from 'rxjs/Subscription';
+
+
 var faker = require('faker');
 
+interface UsersResponse{
+	teams: User[];
+}
 
 @Injectable()
-export class UserService {
+export class UserService implements OnDestroy{
 
-	_users = new BehaviorSubject<User[]>(null);
-	constructor() { 		
-		this._users.next(this.getDummyData());
+	private _userSubscription: Subscription;
+	private _users = new BehaviorSubject<User[]>([]);
+	constructor(private http: HttpClient) { 
+
+		this._userSubscription = this.http.get<UsersResponse>(environment.location.api.user).subscribe(data => {
+			this._users.next(data.teams);
+	    }, error => {
+	    	throw error;
+	    	
+	    });
+
 	}
 
 	get users(): BehaviorSubject<User[]>{
 		return this._users;
 	}
 
-	getDummyData(){
-		let i = 0;
-		let dummyUserData = [];
-		while(i++<8) {
-			let user = new User();
-				user.name = faker.name.findName();
-				user.type = 'developer';
-				user.avatar = faker.internet.avatar();
-			dummyUserData.push(user);
-		}
-		return dummyUserData;
+	ngOnDestroy(){
+		this._userSubscription.unsubscribe();
 	}
 
 }

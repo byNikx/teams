@@ -3,7 +3,7 @@ import { NgModule, forwardRef } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import 'hammerjs';
 
 /**Services**/
@@ -16,19 +16,21 @@ import { UtilService } from './services/util/util.service';
 import { AppComponent } from './app.component';
 import { ContainerComponent } from './components/container/container.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { TeamCardComponent } from './components/team-card/team-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContainerComponent,
-    DashboardComponent
+    DashboardComponent,
+    TeamCardComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    HttpModule
+    HttpClientModule
   ],
   providers: [
     forwardRef(() => LayoutService),

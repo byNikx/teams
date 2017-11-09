@@ -7,7 +7,7 @@ import { Team } from '../../models/team.model';
 import { environment } from '../../../environments/environment';
 
 var faker = require('faker');
-const appData = require('../../static-data/teams.json');
+//const appData = require('../../static-data/teams.json');
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 	bgColor: string;
 	colorArray = ['#3f51b5', '#F50057', '#673AB7', '#004D40', '#4CAF50', '#E65100', '#607D8B'];
-	private _usersWatcher: Subscription;
+	private _userSubscription: Subscription;
 	users: User[];
 	teams = [];
 	partition = {left: null, right: null};
@@ -30,11 +30,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	constructor(private layout: LayoutService, private userService: UserService, private util: UtilService) { 
 
 		this.getRandomColor();
-		this._usersWatcher = this.userService.users.subscribe((users)=>{
-			this.users = users;
+		this._userSubscription = this.userService.users.subscribe((users)=>{
+			this.prepareTeams(users)
+				.doPartition(this.teams)
+				.prepareDashboard(this.teams);
 		});
+	}
 
-		appData.forEach((team)=>{
+	prepareTeams(data){
+
+		data.forEach((team)=>{
 			let _team = new Team();
 				_team.name = team.name;
 				_team.area = team.backlog;
@@ -44,24 +49,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
 				});
 				this.teams.push(_team);
 		});
-		this.doPartition();
-
+		return this;
 	}
 
-	doPartition(){
-		let totalTeams = this.teams.length || 0;
+	doPartition(data){
 
-		if(!totalTeams)	return;
+		let totalTeams = data.length || 0;
+		if(!totalTeams)	this;
 
-		this.partition.left = this.teams.filter((team, index)=>{
+		this.partition.left = data.filter((team, index)=>{
 			if(index+1<=Math.ceil(totalTeams/2))
 				return team;
 		});
-		this.partition.right = this.teams.filter((team, index)=>{
+		this.partition.right = data.filter((team, index)=>{
 			if(index+1>Math.ceil(totalTeams/2) && index+1<=totalTeams)
 				return team;
 		});
-
+		return this;
 	}
 
 	getRandomColor(){
@@ -73,15 +77,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	ngOnInit() {
-		setInterval(()=>{
-			this.getRandomColor();
-		}, 5*1000);
-
+	prepareDashboard(data){
 		Object.assign(this.count, {departments: 3});
-		Object.assign(this.count, {teams: appData.length});
+		Object.assign(this.count, {teams: data.length});
 		
-		Object.assign(this.count, {scrumMasters: appData.map((team)=>{
+		Object.assign(this.count, {scrumMasters: data.map((team)=>{
 				let scrumMasters = team.members.filter((member, index)=>{
 					if(member.role == "scrum_master"){
 						return member;
@@ -106,7 +106,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 			}, {temp:[], out:[]}).out.length
 		});
 
-		Object.assign(this.count, {members: appData.reduce((accumulator, team)=>{
+		Object.assign(this.count, {members: data.reduce((accumulator, team)=>{
 
 			team.members.forEach((member)=>{
 				let key = [member.name, member.img].join('|');
@@ -122,14 +122,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
 			}, {temp:[], out:[]}).out.length
 
 		});
+	}
 
-
-console.log("this.count", this.count);
-
+	ngOnInit() {
+		setInterval(()=>{
+			this.getRandomColor();
+		}, 30*1000);
 	}
 
 	ngOnDestroy(){
-		this._usersWatcher.unsubscribe();
+		this._userSubscription.unsubscribe();
 	}
 
 }
